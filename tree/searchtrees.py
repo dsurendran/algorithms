@@ -28,8 +28,21 @@ class Node(object):
 
         return False
 
+    def find_min(self):
+        if self.left is None:
+            return self.n
+        else:
+            return self.left.find_min()
+
+    def find_max(self):
+        if self.right is None:
+            return self.n
+        else:
+            return self.right.find_max()
+
     def __str__(self):
         return str(self.n)
+
 
 if __name__ == '__main__':
     root = Node(10)
@@ -41,3 +54,6 @@ if __name__ == '__main__':
     print root
 
     print root.find(5)
+
+    print "Min value " + str(root.find_min())
+    print "Max value " + str(root.find_max())
