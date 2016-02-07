@@ -43,7 +43,7 @@ class Node(object):
                 parent.left = None
             else:
                 parent.right = None
-        elif child_count == 1: # either right or left child is present
+        elif child_count == 1:  # either right or left child is present
             if node.left is not None:
                 child = node.left
             else:
@@ -53,13 +53,13 @@ class Node(object):
                     parent.left = child
                 else:
                     parent.right = child
-        else: # both the children are present
+        else:  # both the children are present
             parent = node
-            next = node.right #find smallest node in right sub tree
+            next = node.right  # find smallest node in right sub tree
             while next.left:
                 parent = next
                 next = next.left
-            node.n = next.n # last node falls under zero or 1 child
+            node.n = next.n  # last node falls under zero or 1 child
             if parent.left == next:
                 parent.left = next.right
             else:
@@ -77,6 +77,32 @@ class Node(object):
         else:
             return self.right.find_max()
 
+    def in_order(self):
+        if self.n is None:
+            return None
+        if self.left:
+            self.left.in_order()
+        print self.n
+        if self.right:
+            self.right.in_order()
+
+    def pre_order(self):
+        if self.n is None:
+            return None
+        print self.n
+        if self.left:
+            self.left.pre_order()
+        if self.right:
+            self.right.pre_order()
+
+    def post_order(self):
+        if self.n is None:
+            return None
+        if self.right:
+            self.right.post_order()
+        if self.left:
+            self.left.post_order()
+
     def __str__(self):
         return str(self.n)
 
@@ -88,6 +114,9 @@ if __name__ == '__main__':
     root.insert(4)
     root.insert(5)
 
+    print "In order traversal"
+    print root.in_order()
+    print "-----------------"
     root.delete(10)
 
     print root
