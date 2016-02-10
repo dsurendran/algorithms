@@ -6,12 +6,12 @@ class Node(object):
 
     def insert(self, num):
         if num > self.n:
-            if self.right is None:
+            if not self.right:
                 self.right = Node(num)
             else:
                 self.right.insert(num)
         else:
-            if self.left is None:
+            if not self.left:
                 self.left = Node(num)
             else:
                 self.left.insert(num)
@@ -19,9 +19,9 @@ class Node(object):
     def find(self, num, parent=None):
         if self.n == num:
             return self, parent
-        elif num > self.n and self.right is not None:
+        elif num > self.n and self.right:
             return self.right.find(num, self)
-        elif num < self.n and self.left is not None:
+        elif num < self.n and self.left:
             return self.left.find(num, self)
         return False, None
 
@@ -44,7 +44,7 @@ class Node(object):
             else:
                 parent.right = None
         elif child_count == 1:  # either right or left child is present
-            if node.left is not None:
+            if node.left:
                 child = node.left
             else:
                 child = node.right
@@ -66,19 +66,19 @@ class Node(object):
                 parent.right = next.right
 
     def find_min(self):
-        if self.left is None:
+        if not self.left:
             return self.n
         else:
             return self.left.find_min()
 
     def find_max(self):
-        if self.right is None:
+        if not self.right:
             return self.n
         else:
             return self.right.find_max()
 
     def in_order(self):
-        if self.n is None:
+        if not self.n:
             return None
         if self.left:
             self.left.in_order()
@@ -87,7 +87,7 @@ class Node(object):
             self.right.in_order()
 
     def pre_order(self):
-        if self.n is None:
+        if not self.n:
             return None
         print self.n
         if self.left:
@@ -96,7 +96,7 @@ class Node(object):
             self.right.pre_order()
 
     def post_order(self):
-        if self.n is None:
+        if not self.n:
             return None
         if self.right:
             self.right.post_order()
