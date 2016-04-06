@@ -103,6 +103,16 @@ class Node(object):
         if self.left:
             self.left.post_order()
 
+    def mirror(self):
+        if not self:
+            return
+        self.mirror(self.left)
+        self.mirror(self.right)
+
+        temp = self.left
+        self.left = self.right
+        self.right = temp
+
     def __str__(self):
         return str(self.n)
 
