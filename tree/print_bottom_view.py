@@ -22,7 +22,7 @@ def get_vertical_distance(node, distance, m):
     get_vertical_distance(node.right, distance + 1, m)
 
 
-def print_top_view(node):
+def print_bottom_view(node):
     m = dict()
     distance = 0
     get_vertical_distance(node, distance, m)
